@@ -1,0 +1,19 @@
+{% spaceless %}
+CACHE MANIFEST
+# rev {{ revision }}
+{% if fallback_list %}
+FALLBACK:
+{% for fallback in fallback_list %}{{ fallback.origin }} {{ fallback.fallback }}
+{% endfor %}
+{% endif %}
+{% if network_list %}
+NETWORK:
+{% for network in network_list %}{{ network }}
+{% endfor %}
+{% endif %}
+{% if cache_list %}
+CACHE:
+{% for cache in cache_list %}{{ cache }}
+{% endfor %}
+{% endif %}
+{% endspaceless %}
