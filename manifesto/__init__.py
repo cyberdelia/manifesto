@@ -17,6 +17,7 @@ class UnifiedManifest(object):
         self.fallback = []
         self.cache = []
         self.network = []
+        self.excluded_manifests = getattr(settings, 'MANIFESTO_EXCLUDED_MANIFESTS', [])
         self.manifests = self.collect_manifest()
         self.prepare_manifest()
 
@@ -33,6 +34,9 @@ class UnifiedManifest(object):
 
             for item_name, item in inspect.getmembers(manifest_module, inspect.isclass):
                 if not item in ignored_classes and issubclass(item, Manifest):
+                    class_path = "%s.manifest.%s" % (app, item_name)
+                    if class_path in self.excluded_manifests:
+                        continue
                     manifests.append(item())
         return manifests
 
