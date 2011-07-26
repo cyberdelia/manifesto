@@ -3,7 +3,7 @@ CACHE MANIFEST
 # rev {{ revision }}
 {% if fallback_list %}
 FALLBACK:
-{% for fallback in fallback_list %}{{ fallback.origin }} {{ fallback.fallback }}
+{% for fallback in fallback_list %}{{ fallback.0 }} {{ fallback.1 }}
 {% endfor %}
 {% endif %}
 {% if network_list %}
