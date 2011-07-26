@@ -33,6 +33,7 @@ class UnifiedManifest(object):
 
         if manifests == None:
             manifests = self.collect_manifest()
+        self.manifests = manifests
 
         for manifest in manifests:
             self._fallback += manifest.fallback()
