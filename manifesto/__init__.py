@@ -14,12 +14,32 @@ __all__ = ['manifest', 'Manifest']
 
 class UnifiedManifest(object):
     def __init__(self):
+        self._fallback = []
+        self._cache = []
+        self._network = []
+        self.manifests = []
+        self._built = False
+        self.excluded_manifests = getattr(settings, 'MANIFESTO_EXCLUDED_MANIFESTS', [])
+
+    def reset(self):
         self.fallback = []
         self.cache = []
         self.network = []
-        self.excluded_manifests = getattr(settings, 'MANIFESTO_EXCLUDED_MANIFESTS', [])
-        self.manifests = self.collect_manifest()
-        self.prepare_manifest()
+        self.manifests = []
+        self._built = False
+
+    def build(self, manifests=None):
+        self.reset()
+
+        if manifests == None:
+            manifests = self.collect_manifest()
+
+        for manifest in manifests:
+            self._fallback += manifest.fallback()
+            self._cache += manifest.cache()
+            self._network += manifest.network()
+
+        self._built = True
 
     def collect_manifest(self):
         ignored_classes = [
@@ -40,11 +60,23 @@ class UnifiedManifest(object):
                     manifests.append(item())
         return manifests
 
-    def prepare_manifest(self):
-        for manifest in self.manifests:
-            self.fallback.extend(manifest.fallback())
-            self.cache.extend(manifest.cache())
-            self.network.extend(manifest.network())
+    @property
+    def fallback(self):
+        if not self._built:
+            self.build()
+        return self._fallback
+
+    @property
+    def network(self):
+        if not self._built:
+            self.build()
+        return self._network
+
+    @property
+    def cache(self):
+        if not self._built:
+            self.build()
+        return self._cache
 
     @property
     def revision(self):
