@@ -5,16 +5,13 @@ from setuptools import setup, find_packages
 
 setup(
     name='manifesto',
-    version='0.1',
+    version='0.2',
     description='Pluggable cache manifest for Django.',
     author=u'Timothée Peignier',
     author_email='timothee.peignier@tryphon.org',
     url='https://github.com/cyberdelia/manifesto',
     packages=find_packages(),
     include_package_data=True,
-    requires=[
-        'bencode',
-    ],
     install_requires=[
         'bencode',
     ],
