@@ -2,3 +2,4 @@
 *.tmproj
 docs/_build
 *.pyc
+dist/

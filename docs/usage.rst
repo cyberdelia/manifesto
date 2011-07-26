@@ -36,7 +36,7 @@ from ``Manifest`` class.
 .. note ::
 	
 	The meaning of each method is corresponding to each section of a cache-manifest,
-	see `Offline Web applications documentation <http://www.w3.org/TR/html5/offline.html>`_ 
+	see `Offline Web applications documentation <http://www.whatwg.org/specs/web-apps/current-work/multipage/offline.html>`_ 
 	for reference.
 
 
