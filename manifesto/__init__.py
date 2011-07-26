@@ -22,9 +22,9 @@ class UnifiedManifest(object):
         self.excluded_manifests = getattr(settings, 'MANIFESTO_EXCLUDED_MANIFESTS', [])
 
     def reset(self):
-        self.fallback = []
-        self.cache = []
-        self.network = []
+        self._fallback = []
+        self._cache = []
+        self._network = []
         self.manifests = []
         self._built = False
 

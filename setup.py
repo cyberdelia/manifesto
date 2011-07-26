@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='manifesto',
-    version='0.3',
+    version='0.3.1',
     description='Pluggable cache manifest for Django.',
     author=u'Timothée Peignier',
     author_email='timothee.peignier@tryphon.org',
