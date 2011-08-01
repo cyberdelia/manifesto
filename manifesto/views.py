@@ -5,7 +5,7 @@ from manifesto import manifest
 
 
 class ManifestView(TemplateView):
-    template_name = "manifesto/cache.manifest"
+    template_name = "manifesto/manifest.appcache"
 
     def render_to_response(self, context, **kwargs):
         kwargs['content_type'] = 'text/cache-manifest'

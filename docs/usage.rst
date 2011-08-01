@@ -64,7 +64,7 @@ cache-manifest ::
 
 
 	urlpatterns = patterns('',
-	  url(r'^cache\.manifest$', ManifestView.as_view(), name="cache_manifest"),
+	  url(r'^manifest\.appcache$', ManifestView.as_view(), name="cache_manifest"),
 	)
 
 Then from your template, you can link to your cache-manifest ::

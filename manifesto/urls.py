@@ -5,5 +5,5 @@ from manifesto.views import ManifestView
 
 
 urlpatterns = patterns('',
-    url(r'^cache\.manifest$', ManifestView.as_view(), name="cache_manifest"),
+    url(r'^manifest\.appcache$', ManifestView.as_view(), name="cache_manifest"),
 )
