@@ -19,7 +19,8 @@ class UnifiedManifest(object):
         self._network = []
         self.manifests = []
         self._built = False
-        self.excluded_manifests = getattr(settings, 'MANIFESTO_EXCLUDED_MANIFESTS', [])
+        self.excluded_manifests = getattr(settings,
+            'MANIFESTO_EXCLUDED_MANIFESTS', [])
 
     def reset(self):
         self._fallback = []
@@ -49,13 +50,13 @@ class UnifiedManifest(object):
         manifests = []
         for app in settings.INSTALLED_APPS:
             try:
-                manifest_module = importlib.import_module("%s.manifest" % app)
+                module = importlib.import_module("%s.manifest" % app)
             except ImportError:
                 continue
 
-            for item_name, item in inspect.getmembers(manifest_module, inspect.isclass):
+            for name, item in inspect.getmembers(module, inspect.isclass):
                 if not item in ignored_classes and issubclass(item, Manifest):
-                    class_path = "%s.manifest.%s" % (app, item_name)
+                    class_path = "%s.manifest.%s" % (app, name)
                     if class_path in self.excluded_manifests:
                         continue
                     manifests.append(item())
