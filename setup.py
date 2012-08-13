@@ -7,7 +7,7 @@ setup(
     name='manifesto',
     version='0.3.3',
     description='Pluggable cache manifest for Django.',
-    author=u'Timothée Peignier',
+    author='Timothee Peignier',
     author_email='timothee.peignier@tryphon.org',
     url='https://github.com/cyberdelia/manifesto',
     packages=find_packages(),
