@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from bencode import bencode
+import itertools
 
 from django.utils.hashcompat import sha_constructor
 
@@ -15,5 +16,5 @@ class Manifest(object):
         return []
 
     def revision(self):
-        revision = self.fallback() + self.network() + self.cache()
+        revision = list(itertools.chain(self.fallback(), self.network(), self.cache()))
         return sha_constructor(bencode(revision)).hexdigest()[:7]
