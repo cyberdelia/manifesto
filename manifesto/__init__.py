@@ -5,7 +5,11 @@ from bencode import bencode
 
 from django.conf import settings
 from django.utils import importlib
-from django.utils.hashcompat import sha_constructor
+
+try:
+    from hashlib import sha1
+except ImportError:
+    from django.utils.hashcompat import sha_constructor as sha1
 
 from manifesto.manifest import Manifest
 
@@ -83,6 +87,6 @@ class UnifiedManifest(object):
     @property
     def revision(self):
         revision = [manifest.revision() for manifest in self.manifests]
-        return sha_constructor(bencode(revision)).hexdigest()[:7]
+        return sha1(bencode(revision)).hexdigest()[:7]
 
 manifest = UnifiedManifest()
