@@ -11,7 +11,7 @@ class ManifestViewTest(TestCase):
         self.assertEqual(response['Content-Type'], 'text/cache-manifest')
         self.assertTemplateUsed(response, "manifesto/manifest.appcache")
         context = response.context
-        self.assertEqual(context['revision'], '593b743')
+        self.assertEqual(len(context['revision']), 7)
         self.assertEqual(context['cache_list'], ['/static/js/application.js',
             '/static/css/screen.css'])
         self.assertEqual(context['network_list'], ['*'])

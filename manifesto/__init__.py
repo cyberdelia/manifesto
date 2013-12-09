@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import inspect
-
-from bencode import bencode
+import pickle
 
 from django.conf import settings
 from django.utils import importlib
@@ -36,7 +35,7 @@ class UnifiedManifest(object):
     def build(self, manifests=None):
         self.reset()
 
-        if manifests == None:
+        if manifests is None:
             manifests = self.collect_manifest()
         self.manifests = manifests
 
@@ -86,7 +85,8 @@ class UnifiedManifest(object):
 
     @property
     def revision(self):
-        revision = [manifest.revision() for manifest in self.manifests]
-        return sha1(bencode(revision)).hexdigest()[:7]
+        manifest = [manifest.revision() for manifest in self.manifests]
+        revision = pickle.dumps(manifest, pickle.HIGHEST_PROTOCOL)
+        return sha1(revision).hexdigest()[:7]
 
 manifest = UnifiedManifest()

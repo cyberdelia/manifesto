@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.conf.urls.defaults import *  # noqa
+from django.conf.urls import *  # noqa
 
 from manifesto.views import ManifestView
 

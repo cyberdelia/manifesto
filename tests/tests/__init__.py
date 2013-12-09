@@ -1,2 +1,2 @@
 # -*- coding: utf-8 flake8: noqa -*-
-from views import *
+from .test_views import *

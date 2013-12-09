@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from bencode import bencode
 import itertools
+import pickle
 
 try:
     from hashlib import sha1
@@ -19,5 +19,6 @@ class Manifest(object):
         return []
 
     def revision(self):
-        revision = list(itertools.chain(self.fallback(), self.network(), self.cache()))
-        return sha1(bencode(revision)).hexdigest()[:7]
+        manifest = list(itertools.chain(self.fallback(), self.network(), self.cache()))
+        revision = pickle.dumps(manifest, pickle.HIGHEST_PROTOCOL)
+        return sha1(revision).hexdigest()[:7]
