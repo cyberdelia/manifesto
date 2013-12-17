@@ -9,7 +9,7 @@ Installation
        pip install manifesto
     
 
-2. Add 'compress' to your ``INSTALLED_APPS`` ::
+2. Add 'manifesto' to your ``INSTALLED_APPS`` ::
 
        INSTALLED_APPS = (
            'manifesto',
