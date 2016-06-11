@@ -9,7 +9,7 @@ To install it :
 
 
 For documentation, usage, and examples, see :
-http://manifesto.readthedocs.org/
+https://manifesto.readthedocs.io/
 
 To suggest a feature or report a bug :
 https://github.com/cyberdelia/manifesto/issues
