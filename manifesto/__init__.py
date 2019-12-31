@@ -3,7 +3,10 @@ import inspect
 import pickle
 
 from django.conf import settings
-from django.utils import importlib
+try:
+    from django.utils import importlib
+except ImportError:
+    import importlib
 
 try:
     from hashlib import sha1
